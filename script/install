@@ -6,5 +6,15 @@ set -e
 
 cd "$(dirname $0)"/..
 
-# find the installers and run them iteratively
-find . -path ./optional -prune -o -name install.sh  | while read installer ; do sh -c "${installer}" ; done
+
+if [ $# -ne 0 ]; then
+    INSTALLER="${1}/install.sh"
+    if [ -f "${INSTALLER}" ]; then
+        sh -c "${INSTALLER}"
+    else
+        echo "File ${INSTALLER} not found"
+    fi
+else
+    # find the installers and run them iteratively
+    find . -path ./optional -prune -o -name install.sh  | while read installer ; do sh -c "${installer}" ; done
+fi
