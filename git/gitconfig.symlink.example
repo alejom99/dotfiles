@@ -18,19 +18,19 @@
 [color]
         ui = true
 [color "diff"]
-        meta = blue bold
-        frag = magenta bold
-        old = red bold
-        new = green bold
+        meta = blue
+        frag = magenta
+        old = red
+        new = green
 [color "branch"]
         current = yellow reverse
         local = yellow bold
         remote = green bold
         plain = red bold
 [color "status"]
-        added = yellow bold
-        changed = cyan bold
-        untracked = blue bold
+        added = green
+        changed = red
+        untracked = blue
 [core]
         excludesfile = ~/.gitignore
         editor = vim
