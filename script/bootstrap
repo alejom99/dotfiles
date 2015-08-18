@@ -9,7 +9,7 @@ set -e
 
 echo ''
 
-source "${ZSH}/util/interactive"
+source "${DOTFILES_ROOT}/util/interactive"
 
 setup_gitconfig () {
   if ! [ -f git/gitconfig.symlink ]
