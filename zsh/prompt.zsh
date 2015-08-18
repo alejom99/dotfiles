@@ -32,7 +32,7 @@ directory_name(){
 }
 
 # git_super_status imported from git/git-prompt.zsh
-export PROMPT=$'\n  $(directory_name) $(git_super_status)\n❯ '
+#export PROMPT=$'\n  $(directory_name) $(git_super_status)\n❯ '
 
 set_prompt () {
   export RPROMPT="%{$fg_bold[cyan]%}$(todo)%{$reset_color%}"
@@ -40,5 +40,5 @@ set_prompt () {
 
 precmd() {
   title "zsh" "%m" "%55<...<%~"
-  set_prompt
+  # set_prompt
 }

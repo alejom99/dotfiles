@@ -17,3 +17,20 @@ function title() {
   esac
 }
 
+# Setup antigen
+source ~/code/antigen/antigen.zsh
+
+antigen bundle command-not-found
+
+# Syntax highlighting
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+# history search
+antigen bundle zsh-users/zsh-history-substring-search ./zsh-history-substring-search.zsh
+
+# bind UP and DOWN arrow keys
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+antigen use oh-my-zsh
+antigen theme alejandro
