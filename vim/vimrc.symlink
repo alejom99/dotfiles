@@ -1,4 +1,7 @@
+set t_Co=256
 syntax on
+syntax enable
+set number
 
 " Wrap gitcommit file types at the appropriate length
 filetype indent plugin on
