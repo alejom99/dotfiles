@@ -9,11 +9,25 @@ export ZSH=$HOME/.dotfiles
 # Set OS X defaults
 $ZSH/osx/set-defaults.sh
 
+UPDATE=false
+
+while [ ! $# -eq 0 ]
+do
+    case "$1" in
+        --update | -u)
+            UPDATE=true
+            ;;
+    esac
+    shift
+done
+
 # Upgrade homebrew
 if test $(which brew)
 then
-    brew update && brew upgrade
-else
-    # Install homebrew packages
+    if [ "$UPDATE" == true ]; then
+        echo "Updating and upgrading homebrew ..."
+        #   brew update && brew upgrade
+    fi
+    echo "Installing homebrew packages ..."
     $ZSH/homebrew/install.sh 2>&1
 fi
