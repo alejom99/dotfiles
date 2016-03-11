@@ -1,7 +1,7 @@
 # ----------------------------------------------------------------------
 # boot2docker
 # ----------------------------------------------------------------------
-if [ "$(boot2docker status)" = "running" ]
+if [ "$(docker-machine status docker-vm)" = "Running" ]
 then
-    $(boot2docker shellinit > /dev/null 2>&1)
+    eval $(docker-machine env docker-vm)
 fi
