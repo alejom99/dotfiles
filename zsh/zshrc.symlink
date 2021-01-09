@@ -41,3 +41,40 @@ do
 done
 
 unset config_files
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/alejo/.nvm/versions/node/v8.6.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/alejo/.nvm/versions/node/v8.6.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/alejo/.nvm/versions/node/v8.6.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/alejo/.nvm/versions/node/v8.6.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /Users/alejo/.nvm/versions/node/v8.12.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/alejo/.nvm/versions/node/v8.12.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
+
+local user_symbol="$"
+if [[ $(print -P "%#") =~ "#" ]]; then
+    user_symbol = "#"
+fi
+POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
+POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir virtualenv vcs custom_k8s_context)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='steelblue1'
+POWERLEVEL9K_DIR_HOME_BACKGROUND='steelblue1'
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='steelblue1'
+POWERLEVEL9K_DIR_ETC_BACKGROUND='steelblue1'
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%f"
+POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%{%B%F{black}%K{yellow}%} $user_symbol%{%b%f%k%F{yellow}%} %{%f%}"
+POWERLEVEL9K_CUSTOM_K8S_CONTEXT="kubectl config current-context"
+POWERLEVEL9K_CUSTOM_K8S_CONTEXT_BACKGROUND="green"
+POWERLEVEL9K_CUSTOM_K8S_CONTEXT_ICON=$'\u2388 '
+source /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/alejo/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/alejo/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/alejo/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/alejo/google-cloud-sdk/completion.zsh.inc'; fi
