@@ -1,44 +1,77 @@
-autoload colors && colors
+# autoload colors && colors
+# # cheers, @ehrenmurdick
+# # http://github.com/ehrenmurdick/config/blob/master/zsh/prompt.zsh
 
-# This keeps the number of todos always available the right hand side of my
-# command line. I filter it to only count those tagged as "+next", so it's more
-# of a motivation to clear out the list.
-todo(){
-  if (( $+commands[todo.sh] ))
-  then
-    num=$(echo $(todo.sh ls +next | wc -l))
-    let todos=num-2
-    if [ $todos != 0 ]
-    then
-      echo "$todos"
-    else
-      echo ""
-    fi
-  else
-    echo ""
-  fi
-}
+# if (( $+commands[git] ))
+# then
+#   git="$commands[git]"
+# else
+#   git="/usr/bin/git"
+# fi
 
-path(){
-  d=$(print -P '%3~')
-  case $d in
-    ('~'*|/*) echo "$d";;
-    (*)       echo "...$d"
-  esac
-}
+# git_branch() {
+#   echo $($git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'})
+# }
 
-directory_name(){
-  echo "%{$fg_bold[green]%}$(path)%\/%{$reset_color%}"
-}
+# git_dirty() {
+#   if $(! $git status -s &> /dev/null)
+#   then
+#     echo ""
+#   else
+#     if [[ $($git status --porcelain) == "" ]]
+#     then
+#       echo "on %{$fg_bold[green]%}$(git_prompt_info)%{$reset_color%}"
+#     else
+#       echo "on %{$fg_bold[red]%}$(git_prompt_info)%{$reset_color%}"
+#     fi
+#   fi
+# }
 
-# git_super_status imported from git/git-prompt.zsh
-#export PROMPT=$'\n  $(directory_name) $(git_super_status)\n❯ '
+# git_prompt_info () {
+#  ref=$($git symbolic-ref HEAD 2>/dev/null) || return
+# # echo "(%{\e[0;33m%}${ref#refs/heads/}%{\e[0m%})"
+#  echo "${ref#refs/heads/}"
+# }
 
-set_prompt () {
-  export RPROMPT="%{$fg_bold[cyan]%}$(todo)%{$reset_color%}"
-}
+# # This assumes that you always have an origin named `origin`, and that you only
+# # care about one specific origin. If this is not the case, you might want to use
+# # `$git cherry -v @{upstream}` instead.
+# need_push () {
+#   if [ $($git rev-parse --is-inside-work-tree 2>/dev/null) ]
+#   then
+#     number=$($git cherry -v origin/$(git symbolic-ref --short HEAD) 2>/dev/null | wc -l | bc)
 
-precmd() {
-  title "zsh" "%m" "%55<...<%~"
-  # set_prompt
-}
+#     if [[ $number == 0 ]]
+#     then
+#       echo " "
+#     else
+#       echo " with %{$fg_bold[magenta]%}$number unpushed%{$reset_color%}"
+#     fi
+#   fi
+# }
+
+# directory_name() {
+#   echo "%{$fg_bold[cyan]%}%1/%\/%{$reset_color%}"
+# }
+
+# battery_status() {
+#   if test ! "$(uname)" = "Darwin"
+#   then
+#     exit 0
+#   fi
+
+#   if [[ $(sysctl -n hw.model) == *"Book"* ]]
+#   then
+#     $ZSH/bin/battery-status
+#   fi
+# }
+
+# export PROMPT=$'\n$(battery_status)in $(directory_name) $(git_dirty)$(need_push)\n› '
+# set_prompt () {
+#   export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
+# }
+
+# precmd() {
+#   title "zsh" "%m" "%55<...<%~"
+#   set_prompt
+# }

@@ -4,30 +4,48 @@
 #
 # `dot` handles installation, updates, things like that. Run it periodically
 # to make sure you're on the latest and greatest.
-export ZSH=$HOME/.dotfiles
 
-# Set OS X defaults
-$ZSH/osx/set-defaults.sh
+set -e
 
-UPDATE=false
+parentDirectory="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd -P)"
+dotfilesDirectory="$(cd "$( dirname "$parentDirectory" )" && pwd -P)"
 
-while [ ! $# -eq 0 ]
-do
-    case "$1" in
-        --update | -u)
-            UPDATE=true
-            ;;
-    esac
-    shift
+displayUsageAndExit() {
+	echo "dot -- dotfiles management"
+	echo ""
+	echo "Usage: dot [options]"
+	echo ""
+	echo "Options:"
+	echo "  -e, --edit    Open dotfiles directory for editing"
+	echo "  -h, --help    Show this help message and exit"
+	exit
+}
+
+while test $# -gt 0; do
+	case "$1" in
+		"-h"|"--help")
+			displayUsageAndExit
+			;;
+		"-e"|"--edit")
+			exec "$EDITOR" "$dotfilesDirectory"
+			exit
+			;;
+		*)
+			echo "Invalid option: $1"
+			displayUsageAndExit
+			;;
+	esac
+	shift
 done
 
+export ZSH=$HOME/.dotfiles
+
+# Set macOS defaults
+# $ZSH/macos/set-defaults.sh
+
+# Install homebrew
+$ZSH/homebrew/install.sh 2>&1
+
 # Upgrade homebrew
-if test $(which brew)
-then
-    if [ "$UPDATE" == true ]; then
-        echo "Updating and upgrading homebrew ..."
-        #   brew update && brew upgrade
-    fi
-    echo "Installing homebrew packages ..."
-    $ZSH/homebrew/install.sh 2>&1
-fi
+echo "› brew update"
+brew update

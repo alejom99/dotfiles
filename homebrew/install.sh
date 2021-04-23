@@ -11,18 +11,9 @@
 if test ! $(which brew)
 then
   echo "  Installing Homebrew for you."
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null
-fi
 
-brew tap gapple/services
-brew tap mshick/personal
-brew tap caskroom/versions
-brew tap caskroom/fonts
-
-# Install cask
-if ! [[ $(brew ls --versions brew-cask) ]]
-then
-    brew install caskroom/cask/brew-cask
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  
 fi
 
 exit 0

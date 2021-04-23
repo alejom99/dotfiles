@@ -1,5 +1,6 @@
 #!/bin/zsh
 
+echo "Installing antigen ..."
 source $ZSH/bin/antigen.zsh
 
 local REPO_DIR="$(-antigen-get-clone-dir $ANTIGEN_DEFAULT_REPO_URL)/themes"

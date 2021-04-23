@@ -18,7 +18,7 @@ function title() {
 }
 
 # Setup antigen
-source ~/code/antigen/antigen.zsh
+source ~/.dotfiles/bin/antigen.zsh
 
 antigen bundle command-not-found
 
@@ -33,4 +33,5 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
 antigen use oh-my-zsh
-antigen theme alejandro
+antigen theme romkatv/powerlevel10k
+antigen apply
