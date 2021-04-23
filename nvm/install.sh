@@ -3,5 +3,5 @@ then
   echo "  Installing nvm for you."
   brew install nvm
 
-  mkdir ~/.nvm
+  [ ! -d ~/.nvm ] && mkdir ~/.nvm
 fi
