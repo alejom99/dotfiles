@@ -49,3 +49,6 @@ $ZSH/homebrew/install.sh 2>&1
 # Upgrade homebrew
 echo "› brew update"
 brew update
+
+# Install programs and utilities
+$ZSH/scripts/install 2>&1
